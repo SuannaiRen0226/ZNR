@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美国历史百科 - 从殖民地到超级大国的崛起</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'america-red': '#B22234',
+                        'america-blue': '#3C3B6E',
+                        'america-light-blue': '#87CEEB',
+                        'gold': '#FFD700',
+                        'cream': '#F5F5DC'
+                    },
+                    fontFamily: {
+                        'serif': ['Georgia', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            }
+            .bg-gradient-america {
+                background: linear-gradient(135deg, #3C3B6E 0%, #B22234 50%, #FFD700 100%);
+            }
+            .scroll-smooth {
+                scroll-behavior: smooth;
+            }
+            .particle {
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: rgba(255, 215, 0, 0.6);
+                border-radius: 50%;
+                animation: float 3s infinite ease-in-out;
+            }
+            @keyframes float {
+                0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+                50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+            }
+            @keyframes pulse-glow {
+                0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+                50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.6); }
+            }
+            .pulse-glow {
+                animation: pulse-glow 2s infinite;
+            }
+            @keyframes slide-in-from-top {
+                from { opacity: 0; transform: translateY(-50px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .slide-in {
+                animation: slide-in-from-top 0.8s ease-out;
+            }
+            .timeline-item {
+                transition: all 0.3s ease;
+            }
+            .timeline-item:hover {
+                transform: translateX(10px);
+                background-color: rgba(255, 255, 255, 0.9);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans scroll-smooth">
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-lg z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-america rounded-lg flex items-center justify-center pulse-glow">
+                        <i class="fa fa-flag text-white text-lg"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-gray-900">美国历史百科</h1>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="text-gray-700 hover:text-america-blue transition-colors duration-200">首页</a>
+                    <a href="#colonial" class="text-gray-700 hover:text-america-blue transition-colors duration-200">殖民地时期</a>
+                    <a href="#revolution" class="text-gray-700 hover:text-america-blue transition-colors duration-200">独立战争</a>
+                    <a href="#expansion" class="text-gray-700 hover:text-america-blue transition-colors duration-200">扩张时期</a>
+                    <a href="#civil-war" class="text-gray-700 hover:text-america-blue transition-colors duration-200">南北战争</a>
+                    <a href="#industrialization" class="text-gray-700 hover:text-america-blue transition-colors duration-200">工业化</a>
+                    <a href="#world-wars" class="text-gray-700 hover:text-america-blue transition-colors duration-200">世界大战</a>
+                    <a href="#cold-war" class="text-gray-700 hover:text-america-blue transition-colors duration-200">冷战</a>
+                    <a href="#modern" class="text-gray-700 hover:text-america-blue transition-colors duration-200">现代美国</a>
+                </div>
+                <button class="md:hidden text-gray-700" id="mobile-menu-btn">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 移动端菜单 -->
+        <div class="md:hidden bg-white border-t hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-gray-700 hover:text-america-blue">首页</a>
+                <a href="#colonial" class="block px-3 py-2 text-gray-700 hover:text-america-blue">殖民地时期</a>
+                <a href="#revolution" class="block px-3 py-2 text-gray-700 hover:text-america-blue">独立战争</a>
+                <a href="#expansion" class="block px-3 py-2 text-gray-700 hover:text-america-blue">扩张时期</a>
+                <a href="#civil-war" class="block px-3 py-2 text-gray-700 hover:text-america-blue">南北战争</a>
+                <a href="#industrialization" class="block px-3 py-2 text-gray-700 hover:text-america-blue">工业化</a>
+                <a href="#world-wars" class="block px-3 py-2 text-gray-700 hover:text-america-blue">世界大战</a>
+                <a href="#cold-war" class="block px-3 py-2 text-gray-700 hover:text-america-blue">冷战</a>
+                <a href="#modern" class="block px-3 py-2 text-gray-700 hover:text-america-blue">现代美国</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <section id="home" class="relative h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-red-900 overflow-hidden">
+        <!-- 动态背景粒子 -->
+        <div id="particles" class="absolute inset-0"></div>
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+        
+        <!-- 浮动历史元素 -->
+        <div class="absolute top-20 left-10 text-white/20 animate-bounce">
+            <i class="fa fa-flag text-4xl"></i>
+        </div>
+        <div class="absolute top-40 right-20 text-white/20 animate-pulse">
+            <i class="fa fa-bullseye text-3xl"></i>
+        </div>
+        <div class="absolute bottom-32 left-20 text-white/20 animate-bounce" style="animation-delay: 1s;">
+            <i class="fa fa-bullseye text-3xl"></i>
+        </div>
+        <div class="absolute bottom-20 right-10 text-white/20 animate-pulse" style="animation-delay: 0.5s;">
+            <i class="fa fa-star text-4xl"></i>
+        </div>
+
+        <div class="relative z-10 text-center text-white px-4">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-shadow slide-in">
+                美国历史百科
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto leading-relaxed slide-in" style="animation-delay: 0.2s;">
+                从殖民地到世界超级大国的传奇历程
+            </p>
+            
+            <!-- 统计数据展示 - 修复颜色对比度问题 -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 max-w-4xl mx-auto slide-in" style="animation-delay: 0.4s;">
+                <div class="bg-america-blue/80 backdrop-blur-sm rounded-lg p-6 border-2 border-gold shadow-lg">
+                    <div class="text-3xl font-bold text-gold mb-2">248年</div>
+                    <div class="text-white text-lg">建国历史</div>
+                </div>
+                <div class="bg-america-red/80 backdrop-blur-sm rounded-lg p-6 border-2 border-white shadow-lg">
+                    <div class="text-3xl font-bold text-white mb-2">50个</div>
+                    <div class="text-white text-lg">州</div>
+                </div>
+                <div class="bg-gold/80 backdrop-blur-sm rounded-lg p-6 border-2 border-america-blue shadow-lg">
+                    <div class="text-3xl font-bold text-america-blue mb-2">3.33亿</div>
+                    <div class="text-america-blue text-lg">人口</div>
+                </div>
+                <div class="bg-green-600/80 backdrop-blur-sm rounded-lg p-6 border-2 border-white shadow-lg">
+                    <div class="text-3xl font-bold text-white mb-2">21.4万亿</div>
+                    <div class="text-white text-lg">GDP(美元)</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center slide-in" style="animation-delay: 0.6s;">
+                <button onclick="scrollToSection('colonial')" class="bg-america-red hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg pulse-glow">
+                    <i class="fa fa-play mr-2"></i>开始历史之旅
+                </button>
+                <button onclick="showHistoryOverview()" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300">
+                    <i class="fa fa-info-circle mr-2"></i>了解更多
+                </button>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fa fa-chevron-down text-white text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- 殖民地时期 -->
+    <section id="colonial" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">殖民地时期</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">1607-1775：欧洲列强在北美的殖民扩张</p>
+            </div>
+            
+            <!-- 殖民地时期详细时间线 -->
+            <div class="bg-gradient-to-r from-blue-50 to-red-50 p-8 rounded-xl mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">殖民地时期重要事件时间线</h3>
+                <div class="space-y-4">
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-america-blue">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-america-blue">1492年</h4>
+                            <span class="bg-america-blue text-white px-3 py-1 rounded-full text-sm">探险时期</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">哥伦布发现新大陆</h5>
+                        <p class="text-gray-700">克里斯托弗·哥伦布率领西班牙船队到达美洲巴哈马群岛，开启了欧洲对北美的殖民历史。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-america-red">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-america-red">1607年5月14日</h4>
+                            <span class="bg-america-red text-white px-3 py-1 rounded-full text-sm">英国殖民</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">詹姆斯敦建立</h5>
+                        <p class="text-gray-700">由弗吉尼亚公司建立，是英国在北美大陆的第一个永久殖民地，位于今天的弗吉尼亚州。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-gold">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-gold">1620年11月11日</h4>
+                            <span class="bg-gold text-gray-900 px-3 py-1 rounded-full text-sm">清教徒移民</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">五月花号抵达普利茅斯</h5>
+                        <p class="text-gray-700">102名清教徒在普利茅斯登陆，签署《五月花号公约》，建立了普利茅斯殖民地。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-green-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-green-600">1624年</h4>
+                            <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm">荷兰殖民</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">新尼德兰殖民地建立</h5>
+                        <p class="text-gray-700">荷兰西印度公司建立新尼德兰殖民地，包括今天的纽约、新泽西、特拉华等地区。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-purple-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-purple-600">1681年</h4>
+                            <span class="bg-purple-600 text-white px-3 py-1 rounded-full text-sm">贵格会殖民</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">宾夕法尼亚殖民地建立</h5>
+                        <p class="text-gray-700">威廉·佩恩建立宾夕法尼亚殖民地，成为贵格会信徒的避难所，以宗教宽容著称。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-orange-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-orange-600">1754-1763年</h4>
+                            <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-sm">英法战争</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">法国和印第安人战争</h5>
+                        <p class="text-gray-700">英法两国为争夺北美殖民地而战，最终英国获胜，获得了加拿大和密西西比河以东的领土。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-red-600">1765年3月22日</h4>
+                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm">殖民地反抗</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">《印花税法》通过</h5>
+                        <p class="text-gray-700">英国议会通过《印花税法》，对殖民地的法律文件、报纸、扑克牌等征税，引发殖民地强烈反抗。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-700">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-red-700">1770年3月5日</h4>
+                            <span class="bg-red-700 text-white px-3 py-1 rounded-full text-sm">暴力冲突</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">波士顿惨案</h5>
+                        <p class="text-gray-700">英军在波士顿向抗议人群开枪，造成5人死亡，成为独立战争的重要导火索。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-800">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-red-800">1773年12月16日</h4>
+                            <span class="bg-red-800 text-white px-3 py-1 rounded-full text-sm">直接行动</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">波士顿倾茶事件</h5>
+                        <p class="text-gray-700">波士顿居民伪装成印第安人，将英国东印度公司的342箱茶叶倒入波士顿港，抗议茶叶税。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-america-blue">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-america-blue">1774年9月5日</h4>
+                            <span class="bg-america-blue text-white px-3 py-1 rounded-full text-sm">殖民地联合</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">第一届大陆会议召开</h5>
+                        <p class="text-gray-700">12个殖民地的代表在费城召开会议，商讨应对英国政策的对策，标志着殖民地联合的开始。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-900">欧洲探险与殖民</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        1492年，克里斯托弗·哥伦布发现新大陆后，欧洲各国开始向北美派遣探险家。英国人在1607年建立了第一个永久殖民地詹姆斯敦，开启了英国在北美的殖民历史。
+                    </p>
+                    <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-america-blue">
+                        <h4 class="font-bold text-gray-900 mb-3">主要殖民国家</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <h5 class="font-semibold text-america-red mb-1">英国殖民地</h5>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• 弗吉尼亚 (1607)</li>
+                                    <li>• 马萨诸塞 (1620)</li>
+                                    <li>• 纽约 (1664)</li>
+                                    <li>• 宾夕法尼亚 (1681)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-blue-600 mb-1">其他欧洲殖民地</h5>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• 新尼德兰 (荷兰, 1624)</li>
+                                    <li>• 新法兰西 (法国)</li>
+                                    <li>• 佛罗里达 (西班牙)</li>
+                                    <li>• 路易斯安那 (法国)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://doc.doubao.com/s/t9v_bFtDkns/" alt="美国殖民地时期" class="rounded-lg shadow-2xl w-full h-96 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-lg"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <p class="text-sm">殖民地时期的北美大陆</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-50 to-red-50 p-8 rounded-xl mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">殖民地社会与经济</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-america-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-industry text-white text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-3">北部殖民地</h4>
+                        <div class="text-left text-gray-700 text-sm space-y-2">
+                            <p><strong>经济：</strong>工商业为主，造船业发达</p>
+                            <p><strong>社会：</strong>清教徒文化，重视教育</p>
+                            <p><strong>主要活动：</strong>渔业、贸易、制造业</p>
+                            <p><strong>代表城市：</strong>波士顿、费城</p>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-bullseye text-white text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-3">中部殖民地</h4>
+                        <div class="text-left text-gray-700 text-sm space-y-2">
+                            <p><strong>经济：</strong>农业和商业并重</p>
+                            <p><strong>社会：</strong>宗教多元化，宽容包容</p>
+                            <p><strong>主要活动：</strong>种植小麦、玉米</p>
+                            <p><strong>代表城市：</strong>纽约、费城</p>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-america-red rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-bullseye text-white text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-3">南部殖民地</h4>
+                        <div class="text-left text-gray-700 text-sm space-y-2">
+                            <p><strong>经济：</strong>种植园经济</p>
+                            <p><strong>社会：</strong>贵族地主主导，黑奴制度</p>
+                            <p><strong>主要作物：</strong>烟草、棉花、靛蓝</p>
+                            <p><strong>代表城市：</strong>查尔斯顿、里士满</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 独立战争 -->
+    <section id="revolution" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">美国独立战争</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">1775-1783：为自由而战的伟大革命</p>
+            </div>
+
+            <!-- 独立战争详细时间线 -->
+            <div class="bg-gradient-to-r from-red-50 to-blue-50 p-8 rounded-xl mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">独立战争重要事件时间线</h3>
+                <div class="space-y-4">
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-america-red">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-america-red">1775年4月19日</h4>
+                            <span class="bg-america-red text-white px-3 py-1 rounded-full text-sm">战争爆发</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">列克星顿和康科德战役</h5>
+                        <p class="text-gray-700">"响彻世界的枪声"，英军前往康科德销毁殖民地军火，在列克星顿与民兵交火，独立战争正式开始。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-america-blue">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-america-blue">1775年5月10日</h4>
+                            <span class="bg-america-blue text-white px-3 py-1 rounded-full text-sm">军队建立</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">第二届大陆会议召开</h5>
+                        <p class="text-gray-700">13个殖民地的代表在费城召开会议，决定建立大陆军，任命乔治·华盛顿为总司令。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-gold">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-gold">1776年7月4日</h4>
+                            <span class="bg-gold text-gray-900 px-3 py-1 rounded-full text-sm">建国宣言</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">《独立宣言》发表</h5>
+                        <p class="text-gray-700">大陆会议通过托马斯·杰斐逊起草的《独立宣言》，正式宣布美利坚合众国独立。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-green-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-green-600">1777年10月17日</h4>
+                            <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm">战争转折</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">萨拉托加大捷</h5>
+                        <p class="text-gray-700">美军在萨拉托加击败英军，伯格因将军率7000人投降，成为战争的重要转折点。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-blue-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-blue-600">1778年2月6日</h4>
+                            <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">国际支持</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">法美同盟建立</h5>
+                        <p class="text-gray-700">法国正式承认美国独立，与美国签订军事同盟条约，开始向美国提供军事援助。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-purple-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-purple-600">1781年10月19日</h4>
+                            <span class="bg-purple-600 text-white px-3 py-1 rounded-full text-sm">决定性胜利</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">约克镇战役</h5>
+                        <p class="text-gray-700">美法联军1.6万人包围约克镇，康沃利斯将军率8000英军投降，战争基本结束。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-america-blue">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-america-blue">1783年9月3日</h4>
+                            <span class="bg-america-blue text-white px-3 py-1 rounded-full text-sm">和平条约</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">《巴黎和约》签订</h5>
+                        <p class="text-gray-700">美国与英国在巴黎签订和约，英国正式承认美国独立，美国获得密西西比河以东的领土。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                <div>
+                    <img src="https://doc.doubao.com/s/tRVZIXqAFkE/" alt="独立宣言签署" class="rounded-lg shadow-2xl w-full h-96 object-cover">
+                </div>
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-900">战争的起因与意义</h3>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-gray-900 mb-3">主要起因</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><i class="fa fa-chevron-right text-america-red mr-2"></i>"无代表不纳税"的原则冲突</li>
+                            <li><i class="fa fa-chevron-right text-america-red mr-2"></i>英国对殖民地贸易的严格控制</li>
+                            <li><i class="fa fa-chevron-right text-america-red mr-2"></i>重税政策和军事管制</li>
+                            <li><i class="fa fa-chevron-right text-america-red mr-2"></i>启蒙思想的影响和民族意识觉醒</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-america-blue mb-3">历史意义</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><i class="fa fa-star text-gold mr-2"></i>建立了世界上第一个现代共和制国家</li>
+                            <li><i class="fa fa-star text-gold mr-2"></i>激发了法国大革命等欧洲资产阶级革命</li>
+                            <li><i class="fa fa-star text-gold mr-2"></i>为拉丁美洲独立运动树立了榜样</li>
+                            <li><i class="fa fa-star text-gold mr-2"></i>推动了全球民主化进程</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 扩张时期 -->
+    <section id="expansion" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">美国扩张时期</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">1783-1860：从大西洋到太平洋的领土扩张</p>
+            </div>
+
+            <!-- 扩张时期详细时间线 -->
+            <div class="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-xl mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">美国领土扩张时间线</h3>
+                <div class="space-y-4">
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-america-blue">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-america-blue">1783年</h4>
+                            <span class="bg-america-blue text-white px-3 py-1 rounded-full text-sm">独立领土</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">《巴黎和约》确定的领土</h5>
+                        <p class="text-gray-700">美国获得密西西比河以东、加拿大以南的领土，面积约89万平方公里。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-gold">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-gold">1803年4月30日</h4>
+                            <span class="bg-gold text-gray-900 px-3 py-1 rounded-full text-sm">重大购买</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">路易斯安那购地</h5>
+                        <p class="text-gray-700">从法国购买路易斯安那地区，面积约214万平方公里，仅花费1500万美元。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-green-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-green-600">1819年2月22日</h4>
+                            <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm">条约获得</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">亚当斯-奥尼斯条约</h5>
+                        <p class="text-gray-700">从西班牙获得佛罗里达地区，美国领土进一步扩大。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-red-600">1845年12月29日</h4>
+                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm">合并加入</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">德克萨斯并入美国</h5>
+                        <p class="text-gray-700">德克萨斯共和国正式并入美国，成为第28个州。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-purple-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-purple-600">1846-1848年</h4>
+                            <span class="bg-purple-600 text-white px-3 py-1 rounded-full text-sm">战争获得</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">美墨战争</h5>
+                        <p class="text-gray-700">美国获胜，获得加利福尼亚、新墨西哥等地区，面积约140万平方公里。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-blue-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-blue-600">1853年12月30日</h4>
+                            <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">最后购买</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">加兹登购地</h5>
+                        <p class="text-gray-700">从墨西哥购买亚利桑那和新墨西哥南部地区，为修建铁路提供便利。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-900">"天定命运"与西进运动</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        19世纪，美国提出"天定命运"的思想，认为美国有神圣的使命向西扩张，从大西洋扩展到太平洋。这一思想推动了大规模的西进运动。
+                    </p>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-gray-900 mb-3">扩张的影响</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><i class="fa fa-plus text-green-500 mr-2"></i>领土面积从89万增至937万平方公里</li>
+                            <li><i class="fa fa-plus text-green-500 mr-2"></i>促进了西部开发和经济发展</li>
+                            <li><i class="fa fa-minus text-red-500 mr-2"></i>与印第安人的冲突加剧</li>
+                            <li><i class="fa fa-minus text-red-500 mr-2"></i>关于奴隶制扩展的争议加剧</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://doc.doubao.com/s/yQTc51qNkgg/" alt="美国扩张地图" class="rounded-lg shadow-2xl w-full h-96 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-lg"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <p class="text-sm">美国领土扩张示意图</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 南北战争 -->
+    <section id="civil-war" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">美国南北战争</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">1861-1865：自由与统一的伟大战争</p>
+            </div>
+
+            <!-- 南北战争详细时间线 -->
+            <div class="bg-gradient-to-r from-red-50 to-blue-50 p-8 rounded-xl mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">南北战争重要事件时间线</h3>
+                <div class="space-y-4">
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-america-red">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-america-red">1860年11月6日</h4>
+                            <span class="bg-america-red text-white px-3 py-1 rounded-full text-sm">政治危机</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">林肯当选总统</h5>
+                        <p class="text-gray-700">共和党候选人亚伯拉罕·林肯当选美国总统，反对奴隶制的扩展，引发南方各州不满。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-red-600">1860年12月20日</h4>
+                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm">分裂开始</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">南卡罗来纳州脱离联邦</h5>
+                        <p class="text-gray-700">南卡罗来纳州率先宣布脱离联邦，拉开了美国内战的序幕。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-700">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-red-700">1861年2月4日</h4>
+                            <span class="bg-red-700 text-white px-3 py-1 rounded-full text-sm">南方联盟</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">美利坚联盟国成立</h5>
+                        <p class="text-gray-700">南方7个州在阿拉巴马州蒙哥马利成立美利坚联盟国，杰斐逊·戴维斯当选总统。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-america-blue">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-america-blue">1861年4月12日</h4>
+                            <span class="bg-america-blue text-white px-3 py-1 rounded-full text-sm">战争爆发</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">萨姆特堡战役</h5>
+                        <p class="text-gray-700">南方军队炮击查尔斯顿港的萨姆特堡，美国内战正式爆发。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-gold">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-gold">1863年1月1日</h4>
+                            <span class="bg-gold text-gray-900 px-3 py-1 rounded-full text-sm">解放宣言</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">《解放黑人奴隶宣言》</h5>
+                        <p class="text-gray-700">林肯总统发布《解放黑人奴隶宣言》，宣布所有叛乱州的奴隶获得自由。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-green-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-green-600">1863年7月1-3日</h4>
+                            <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm">战争转折</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">葛底斯堡战役</h5>
+                        <p class="text-gray-700">南北战争中最血腥的战役，双方伤亡超过5万人，北方获胜，成为战争转折点。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-purple-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-purple-600">1865年4月9日</h4>
+                            <span class="bg-purple-600 text-white px-3 py-1 rounded-full text-sm">战争结束</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">阿波马托克斯法院投降</h5>
+                        <p class="text-gray-700">罗伯特·李将军在弗吉尼亚州的阿波马托克斯法院向格兰特将军投降，南北战争结束。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-800">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-red-800">1865年4月14日</h4>
+                            <span class="bg-red-800 text-white px-3 py-1 rounded-full text-sm">悲剧事件</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">林肯遇刺</h5>
+                        <p class="text-gray-700">林肯总统在华盛顿福特剧院被约翰·威尔克斯·布斯刺杀，次日去世。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://doc.doubao.com/s/HL9HFVm_G-M/" alt="南北战争" class="rounded-lg shadow-2xl w-full h-96 object-cover">
+                </div>
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-900">战争的起因与结果</h3>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-gray-900 mb-3">根本原因</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><i class="fa fa-bullseye text-america-red mr-2"></i>北方工业资本主义与南方种植园奴隶制的冲突</li>
+                            <li><i class="fa fa-bullseye text-america-red mr-2"></i>关于奴隶制扩展到新领土的争议</li>
+                            <li><i class="fa fa-bullseye text-america-red mr-2"></i>州权与联邦权的矛盾</li>
+                            <li><i class="fa fa-bullseye text-america-red mr-2"></i>南北经济制度和社会结构的差异</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-america-blue mb-3">战争结果</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><i class="fa fa-check text-green-500 mr-2"></i>维护了国家统一，避免分裂</li>
+                            <li><i class="fa fa-check text-green-500 mr-2"></i>彻底废除了奴隶制</li>
+                            <li><i class="fa fa-check text-green-500 mr-2"></i>确立了联邦政府的权威</li>
+                            <li><i class="fa fa-check text-green-500 mr-2"></i>加速了美国工业化进程</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工业化时期 -->
+    <section id="industrialization" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">工业化与镀金时代</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">1865-1914：从农业国到工业强国的转变</p>
+            </div>
+
+            <!-- 工业化时期详细时间线 -->
+            <div class="bg-gradient-to-r from-gray-50 to-blue-50 p-8 rounded-xl mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">第二次工业革命重要发明时间线</h3>
+                <div class="space-y-4">
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-america-blue">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-america-blue">1876年3月7日</h4>
+                            <span class="bg-america-blue text-white px-3 py-1 rounded-full text-sm">通信革命</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">贝尔发明电话</h5>
+                        <p class="text-gray-700">亚历山大·格拉汉姆·贝尔获得电话专利，彻底改变了人类的通信方式。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-gold">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-gold">1879年10月22日</h4>
+                            <span class="bg-gold text-gray-900 px-3 py-1 rounded-full text-sm">电力革命</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">爱迪生发明电灯</h5>
+                        <p class="text-gray-700">托马斯·爱迪生发明实用电灯，建立了世界上第一个电力系统。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-green-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-green-600">1885年</h4>
+                            <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm">交通革命</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">本茨发明汽车</h5>
+                        <p class="text-gray-700">卡尔·本茨制造出世界上第一辆实用汽车，开启了汽车时代。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-purple-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-purple-600">1903年12月17日</h4>
+                            <span class="bg-purple-600 text-white px-3 py-1 rounded-full text-sm">航空突破</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">怀特兄弟首飞</h5>
+                        <p class="text-gray-700">奥维尔·怀特和威尔伯·怀特实现人类首次动力飞行，开启航空时代。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-red-600">1908年</h4>
+                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm">量产革命</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">福特T型车量产</h5>
+                        <p class="text-gray-700">亨利·福特发明流水线生产方式，T型车开始大规模量产，汽车成为大众消费品。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-900">商业巨头的崛起</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-gray-900">约翰·洛克菲勒</h4>
+                            <p class="text-gray-700 text-sm">标准石油公司创始人，建立了世界上最大的石油垄断企业，控制了美国90%的石油市场。</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-gray-900">安德鲁·卡内基</h4>
+                            <p class="text-gray-700 text-sm">钢铁大王，建立了美国最大的钢铁企业，推动了美国工业化进程。</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-gray-900">J.P.摩根</h4>
+                            <p class="text-gray-700 text-sm">金融巨头，掌控美国银行业，在1907年金融危机中拯救了美国经济。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://doc.doubao.com/s/PuFkCewlgxs/" alt="工业革命" class="rounded-lg shadow-2xl w-full h-96 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-lg"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <p class="text-sm">美国工业革命时期</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 世界大战 -->
+    <section id="world-wars" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">两次世界大战</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">1914-1945：从孤立到世界领导者</p>
+            </div>
+
+            <!-- 第一次世界大战时间线 -->
+            <div class="bg-gradient-to-r from-blue-50 to-gray-50 p-8 rounded-xl mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">第一次世界大战（1914-1918）</h3>
+                <div class="space-y-4">
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-america-blue">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-america-blue">1914年8月</h4>
+                            <span class="bg-america-blue text-white px-3 py-1 rounded-full text-sm">战争爆发</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">第一次世界大战爆发</h5>
+                        <p class="text-gray-700">奥匈帝国向塞尔维亚宣战，欧洲各国相继卷入战争，美国宣布中立。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-red-600">1917年4月6日</h4>
+                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm">美国参战</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">美国对德国宣战</h5>
+                        <p class="text-gray-700">美国国会投票决定对德国宣战，正式加入协约国一方参战。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-green-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-green-600">1918年11月11日</h4>
+                            <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm">战争结束</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">停战协定签署</h5>
+                        <p class="text-gray-700">德国与协约国签署停战协定，第一次世界大战正式结束。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第二次世界大战时间线 -->
+            <div class="bg-gradient-to-r from-red-50 to-blue-50 p-8 rounded-xl mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">第二次世界大战（1939-1945）</h3>
+                <div class="space-y-4">
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-red-600">1941年12月7日</h4>
+                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm">日本偷袭</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">珍珠港事件</h5>
+                        <p class="text-gray-700">日本海军偷袭美国夏威夷珍珠港海军基地，造成2403名美国人死亡。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-america-blue">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-america-blue">1941年12月8日</h4>
+                            <span class="bg-america-blue text-white px-3 py-1 rounded-full text-sm">全面参战</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">美国对日宣战</h5>
+                        <p class="text-gray-700">美国国会通过对日宣战决议，正式加入第二次世界大战。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-gold">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-gold">1945年8月6日和9日</h4>
+                            <span class="bg-gold text-gray-900 px-3 py-1 rounded-full text-sm">核打击</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">投放原子弹</h5>
+                        <p class="text-gray-700">美国在日本广岛和长崎投放原子弹，加速了日本的投降。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-green-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-green-600">1945年9月2日</h4>
+                            <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm">战争结束</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">日本正式投降</h5>
+                        <p class="text-gray-700">日本在东京湾的美国密苏里号战舰上签署无条件投降书，第二次世界大战结束。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://doc.doubao.com/s/n9pOWA_mHDE/" alt="二战时期的美国" class="rounded-lg shadow-2xl w-full h-96 object-cover">
+                </div>
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-900">美国的战争贡献</h3>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-gray-900 mb-3">军事生产</h4>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <div class="font-semibold">飞机产量</div>
+                                <div class="text-america-blue font-bold">30万架</div>
+                            </div>
+                            <div>
+                                <div class="font-semibold">坦克产量</div>
+                                <div class="text-america-blue font-bold">10万辆</div>
+                            </div>
+                            <div>
+                                <div class="font-semibold">舰船产量</div>
+                                <div class="text-america-blue font-bold">6500艘</div>
+                            </div>
+                            <div>
+                                <div class="font-semibold">参军人数</div>
+                                <div class="text-america-blue font-bold">1600万</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-america-blue mb-3">战后影响</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><i class="fa fa-star text-gold mr-2"></i>成为世界超级大国</li>
+                            <li><i class="fa fa-star text-gold mr-2"></i>建立联合国等国际组织</li>
+                            <li><i class="fa fa-star text-gold mr-2"></i>主导布雷顿森林体系</li>
+                            <li><i class="fa fa-star text-gold mr-2"></i>实施马歇尔计划</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 冷战时期 -->
+    <section id="cold-war" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">冷战时期</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">1947-1991：美苏争霸的全球博弈</p>
+            </div>
+
+            <!-- 冷战时期详细时间线 -->
+            <div class="bg-gradient-to-r from-blue-50 to-gray-50 p-8 rounded-xl mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">冷战重要事件时间线</h3>
+                <div class="space-y-4">
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-america-blue">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-america-blue">1947年3月12日</h4>
+                            <span class="bg-america-blue text-white px-3 py-1 rounded-full text-sm">冷战开始</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">杜鲁门主义出台</h5>
+                        <p class="text-gray-700">杜鲁门总统发表国情咨文，提出遏制共产主义的外交政策，冷战正式开始。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-gold">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-gold">1947年6月5日</h4>
+                            <span class="bg-gold text-gray-900 px-3 py-1 rounded-full text-sm">经济援助</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">马歇尔计划</h5>
+                        <p class="text-gray-700">美国国务卿马歇尔提出欧洲复兴计划，向欧洲提供130亿美元经济援助。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-red-600">1962年10月</h4>
+                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm">核危机</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">古巴导弹危机</h5>
+                        <p class="text-gray-700">美苏在古巴导弹问题上发生严重对峙，世界接近核战争边缘，是冷战最危险的时刻。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-purple-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-purple-600">1969年7月20日</h4>
+                            <span class="bg-purple-600 text-white px-3 py-1 rounded-full text-sm">太空竞赛</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">阿波罗11号登月</h5>
+                        <p class="text-gray-700">美国宇航员尼尔·阿姆斯特朗成为第一个踏上月球的人类，美国在太空竞赛中获胜。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-green-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-green-600">1989年11月9日</h4>
+                            <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm">冷战结束</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">柏林墙倒塌</h5>
+                        <p class="text-gray-700">柏林墙被推倒，东西德开始统一进程，冷战即将结束。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-america-blue">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-america-blue">1991年12月25日</h4>
+                            <span class="bg-america-blue text-white px-3 py-1 rounded-full text-sm">苏联解体</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">苏联正式解体</h5>
+                        <p class="text-gray-700">苏联总统戈尔巴乔夫宣布辞职，苏联解体，冷战正式结束，美国成为唯一超级大国。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://doc.doubao.com/s/HYeHg2u1ayM/" alt="冷战时期" class="rounded-lg shadow-2xl w-full h-96 object-cover">
+                </div>
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-900">冷战的全球影响</h3>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-gray-900 mb-3">主要特点</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><i class="fa fa-shield text-america-blue mr-2"></i>美苏两个超级大国的对峙</li>
+                            <li><i class="fa fa-bullseye text-america-red mr-2"></i>核武器竞赛和军备竞赛</li>
+                            <li><i class="fa fa-globe text-green-600 mr-2"></i>全球范围内的代理人战争</li>
+                            <li><i class="fa fa-graduation-cap text-purple-600 mr-2"></i>太空竞赛和科技竞争</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-america-blue mb-3">历史意义</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><i class="fa fa-check text-green-500 mr-2"></i>美国成为世界唯一超级大国</li>
+                            <li><i class="fa fa-check text-green-500 mr-2"></i>全球化进程加速</li>
+                            <li><i class="fa fa-check text-green-500 mr-2"></i>多极化趋势显现</li>
+                            <li><i class="fa fa-check text-green-500 mr-2"></i>科技快速发展</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 现代美国 -->
+    <section id="modern" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">现代美国</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">1991-至今：超级大国的挑战与机遇</p>
+            </div>
+
+            <!-- 现代美国重要事件时间线 -->
+            <div class="bg-gradient-to-r from-blue-50 to-gray-50 p-8 rounded-xl mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">21世纪美国重要事件时间线</h3>
+                <div class="space-y-4">
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-red-600">2001年9月11日</h4>
+                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm">恐怖袭击</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">9·11恐怖袭击</h5>
+                        <p class="text-gray-700">恐怖分子劫持4架民航客机，撞击纽约世贸中心双子塔和五角大楼，造成近3000人死亡。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-america-blue">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-america-blue">2001年10月7日</h4>
+                            <span class="bg-america-blue text-white px-3 py-1 rounded-full text-sm">反恐战争</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">阿富汗战争开始</h5>
+                        <p class="text-gray-700">美国发动阿富汗战争，打击塔利班政权和基地组织，开启全球反恐战争。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-orange-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-orange-600">2008年</h4>
+                            <span class="bg-orange-600 text-white px-3 py-1 rounded-full text-sm">金融危机</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">全球金融危机</h5>
+                        <p class="text-gray-700">由美国次贷危机引发的全球金融危机，导致美国经济陷入严重衰退。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-green-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-green-600">2008年11月4日</h4>
+                            <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm">历史性突破</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">奥巴马当选总统</h5>
+                        <p class="text-gray-700">巴拉克·奥巴马当选美国第44任总统，成为美国历史上第一位非洲裔总统。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-purple-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-purple-600">2016年11月8日</h4>
+                            <span class="bg-purple-600 text-white px-3 py-1 rounded-full text-sm">政治变革</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">特朗普当选总统</h5>
+                        <p class="text-gray-700">唐纳德·特朗普当选美国第45任总统，代表民粹主义和反建制力量的胜利。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-blue-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-blue-600">2020年11月3日</h4>
+                            <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">权力交接</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">拜登当选总统</h5>
+                        <p class="text-gray-700">乔·拜登当选美国第46任总统，卡玛拉·哈里斯成为美国历史上第一位女性副总统。</p>
+                    </div>
+
+                    <div class="timeline-item bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-600">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xl font-bold text-red-600">2020年</h4>
+                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm">全球疫情</span>
+                        </div>
+                        <h5 class="font-semibold text-gray-900 mb-2">COVID-19疫情</h5>
+                        <p class="text-gray-700">新型冠状病毒疫情全球大流行，对美国经济和社会造成严重影响。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-900">当代美国的挑战与机遇</h3>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-gray-900 mb-3">主要挑战</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><i class="fa fa-exclamation-triangle text-red-500 mr-2"></i>政治极化和社会分裂</li>
+                            <li><i class="fa fa-exclamation-triangle text-red-500 mr-2"></i>经济不平等加剧</li>
+                            <li><i class="fa fa-exclamation-triangle text-red-500 mr-2"></i>种族矛盾和歧视</li>
+                            <li><i class="fa fa-exclamation-triangle text-red-500 mr-2"></i>气候变化和环境问题</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h4 class="font-bold text-america-blue mb-3">发展机遇</h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><i class="fa fa-star text-gold mr-2"></i>科技创新和人工智能</li>
+                            <li><i class="fa fa-star text-gold mr-2"></i>新能源和可持续发展</li>
+                            <li><i class="fa fa-star text-gold mr-2"></i>医疗技术和生物技术</li>
+                            <li><i class="fa fa-star text-gold mr-2"></i>全球化和国际合作</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://doc.doubao.com/s/yQTc51qNkgg/" alt="现代美国" class="rounded-lg shadow-2xl w-full h-96 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-lg"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <p class="text-sm">现代美国的繁荣与挑战</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 总结 -->
+    <section class="py-20 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">美国历史总结</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">从殖民地到超级大国的历史启示</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold">历史发展的关键因素</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-america-blue rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white font-bold text-sm">1</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">地理优势</h4>
+                                <p class="text-gray-300">两洋屏障保护，丰富的自然资源，广阔的国土面积</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-america-red rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white font-bold text-sm">2</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">制度优势</h4>
+                                <p class="text-gray-300">三权分立、法治传统、市场经济、移民政策</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-gold rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white font-bold text-sm">3</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">历史机遇</h4>
+                                <p class="text-gray-300">两次世界大战的机遇，冷战胜利，科技革命</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white font-bold text-sm">4</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">文化因素</h4>
+                                <p class="text-gray-300">创新精神、实用主义、个人主义、多元文化</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <img src="https://doc.doubao.com/s/H1ZYi0IzGeg/" alt="自由女神像" class="rounded-lg shadow-2xl w-full h-96 object-cover">
+                </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-sm p-8 rounded-xl mb-16">
+                <h3 class="text-2xl font-bold text-white mb-6 text-center">历史启示</h3>
+                <div class="grid md:grid-cols-2 gap-8 text-gray-200">
+                    <div>
+                        <h4 class="font-bold text-white mb-3">成功经验</h4>
+                        <ul class="space-y-2">
+                            <li><i class="fa fa-check text-green-400 mr-2"></i>开放包容的移民政策</li>
+                            <li><i class="fa fa-check text-green-400 mr-2"></i>持续的科技创新</li>
+                            <li><i class="fa fa-check text-green-400 mr-2"></i>强大的教育体系</li>
+                            <li><i class="fa fa-check text-green-400 mr-2"></i>灵活的社会适应能力</li>
+                            <li><i class="fa fa-check text-green-400 mr-2"></i>完善的法治制度</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-3">历史教训</h4>
+                        <ul class="space-y-2">
+                            <li><i class="fa fa-exclamation-triangle text-yellow-400 mr-2"></i>奴隶制的历史遗留问题</li>
+                            <li><i class="fa fa-exclamation-triangle text-yellow-400 mr-2"></i>对外战争的沉重代价</li>
+                            <li><i class="fa fa-exclamation-triangle text-yellow-400 mr-2"></i>社会分裂的持续挑战</li>
+                            <li><i class="fa fa-exclamation-triangle text-yellow-400 mr-2"></i>霸权地位的维护成本</li>
+                            <li><i class="fa fa-exclamation-triangle text-yellow-400 mr-2"></i>环境问题的忽视</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 引用来源 -->
+            <div class="bg-white/5 p-8 rounded-xl mb-16">
+                <h3 class="text-2xl font-bold text-white mb-6 text-center">参考资料</h3>
+                <div class="grid md:grid-cols-2 gap-8 text-gray-300">
+                    <div>
+                        <h4 class="font-bold text-white mb-3">主要参考来源</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li>1. 《美国历史百科全书》，美国国会图书馆</li>
+                            <li>2. 《美国通史》，高等教育出版社</li>
+                            <li>3. 《美国史》，北京大学出版社</li>
+                            <li>4. 《美国的历程》，商务印书馆</li>
+                            <li>5. 《美国文明史》，中国社会科学出版社</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-3">在线资源</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li>1. 美国国家档案馆官方网站</li>
+                            <li>2. 美国国会图书馆数字 collections</li>
+                            <li>3. 史密森尼学会历史博物馆</li>
+                            <li>4. 耶鲁大学美国史公开课</li>
+                            <li>5. 斯坦福大学胡佛研究所</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-america rounded-lg flex items-center justify-center pulse-glow">
+                            <i class="fa fa-flag text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">美国历史百科</h3>
+                    </div>
+                    <p class="text-gray-300 text-sm">
+                        探索美国从殖民地到超级大国的历史历程，了解世界最强大国家的发展轨迹。
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">历史时期</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#colonial" class="hover:text-white transition-colors">殖民地时期</a></li>
+                        <li><a href="#revolution" class="hover:text-white transition-colors">独立战争</a></li>
+                        <li><a href="#expansion" class="hover:text-white transition-colors">扩张时期</a></li>
+                        <li><a href="#civil-war" class="hover:text-white transition-colors">南北战争</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">现代历史</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#industrialization" class="hover:text-white transition-colors">工业化</a></li>
+                        <li><a href="#world-wars" class="hover:text-white transition-colors">世界大战</a></li>
+                        <li><a href="#cold-war" class="hover:text-white transition-colors">冷战时期</a></li>
+                        <li><a href="#modern" class="hover:text-white transition-colors">现代美国</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">联系我们</h4>
+                    <div class="space-y-2 text-sm text-gray-300">
+                        <p><i class="fa fa-envelope mr-2"></i>zhangnairen110226@outlook.com</p>
+                        <p><i class="fa fa-code mr-2"></i>网站制作：Nathan</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2024 美国历史百科. 本网站由 Nathan 制作. 保留所有权利.</p>
+                <p class="mt-2 text-xs">
+                    电子邮箱：zhangnairen110226@outlook.com | 本网站仅供教育目的使用
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-america-blue hover:bg-blue-700 text-white w-12 h-12 rounded-full shadow-lg transition-all duration-300 transform scale-0 hover:scale-110">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // 移动端菜单切换
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const backToTop = document.getElementById('back-to-top');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-white/98');
+                backToTop.classList.remove('scale-0');
+                backToTop.classList.add('scale-100');
+            } else {
+                navbar.classList.remove('bg-white/98');
+                backToTop.classList.add('scale-0');
+                backToTop.classList.remove('scale-100');
+            }
+        });
+
+        // 平滑滚动到指定部分 - 添加从上到下的动画效果
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            const offsetTop = element.offsetTop - 80;
+            
+            // 添加滑动进入动画
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(50px)';
+            
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+            
+            // 滚动完成后显示元素
+            setTimeout(() => {
+                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }, 300);
+        }
+
+        // 返回顶部
+        document.getElementById('back-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 导航链接点击事件
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                scrollToSection(targetId);
+                
+                // 关闭移动端菜单
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // 创建动态背景粒子
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // 显示历史概述
+        function showHistoryOverview() {
+            // 创建概述模态框
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4';
+            modal.innerHTML = `
+                <div class="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto slide-in">
+                    <div class="p-6 border-b">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-2xl font-bold text-gray-900">美国历史概述</h3>
+                            <button onclick="this.closest('.fixed').remove()" class="text-gray-500 hover:text-gray-700">
+                                <i class="fa fa-times text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-6">
+                            <p class="text-gray-700 leading-relaxed">
+                                美国是一个相对年轻的国家，但在短短几个世纪内从一个英国殖民地发展成为世界上最强大的国家。这个历程充满了挑战、冲突、创新和进步。
+                            </p>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-3">主要历史阶段</h4>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li><i class="fa fa-chevron-right text-america-blue mr-2"></i>殖民地时期 (1607-1775)</li>
+                                        <li><i class="fa fa-chevron-right text-america-red mr-2"></i>独立战争 (1775-1783)</li>
+                                        <li><i class="fa fa-chevron-right text-gold mr-2"></i>扩张时期 (1783-1860)</li>
+                                        <li><i class="fa fa-chevron-right text-green-600 mr-2"></i>南北战争 (1861-1865)</li>
+                                        <li><i class="fa fa-chevron-right text-purple-600 mr-2"></i>工业化时期 (1865-1914)</li>
+                                        <li><i class="fa fa-chevron-right text-blue-600 mr-2"></i>世界大战 (1914-1945)</li>
+                                        <li><i class="fa fa-chevron-right text-america-blue mr-2"></i>冷战时期 (1947-1991)</li>
+                                        <li><i class="fa fa-chevron-right text-gray-600 mr-2"></i>现代美国 (1991-至今)</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-3">历史成就</h4>
+                                    <ul class="space-y-2 text-gray-700">
+                                        <li><i class="fa fa-star text-gold mr-2"></i>建立了世界上第一个现代共和制国家</li>
+                                        <li><i class="fa fa-star text-gold mr-2"></i>在科技和创新方面取得巨大成就</li>
+                                        <li><i class="fa fa-star text-gold mr-2"></i>在两次世界大战中发挥关键作用</li>
+                                        <li><i class="fa fa-star text-gold mr-2"></i>冷战中获胜，成为唯一超级大国</li>
+                                        <li><i class="fa fa-star text-gold mr-2"></i>文化影响力遍及全球</li>
+                                        <li><i class="fa fa-star text-gold mr-2"></i>经济实力和军事实力世界领先</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            
+            // 点击外部关闭
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        // 添加滚动动画观察器
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // 观察所有需要动画的元素
+        document.querySelectorAll('section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 创建背景粒子
+            createParticles();
+            
+            // 初始化第一个section的动画
+            setTimeout(() => {
+                const firstSection = document.querySelector('section');
+                if (firstSection) {
+                    firstSection.style.opacity = '1';
+                    firstSection.style.transform = 'translateY(0)';
+                }
+            }, 300);
+        });
+
+        // 添加键盘事件监听
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // 关闭所有模态框
+                const modals = document.querySelectorAll('.fixed.inset-0');
+                modals.forEach(modal => modal.remove());
+            }
+        });
+    </script>
+</body>
+</html>
